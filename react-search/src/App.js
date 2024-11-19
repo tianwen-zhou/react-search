@@ -21,7 +21,7 @@ export default class App extends Component {
     super(props);
     // 不需要在构造函数中调用 setState
     this.state = {
-      isFirst: false,
+      isFirst: true,
       isLoading: false,
       users: [],
       err: '',
@@ -35,11 +35,10 @@ export default class App extends Component {
   render(){
     // const { isFirst, isLoading, users, err } = this.state; // 解构出状态
     const state = this.state
-    // console.log("app@", state)
     return (
       <div class="container">
-        <Search updateState={this.updateState}/>
-        <List state={state}/>
+        <Search state={state} updateState={this.updateState}/>
+        <List state={state} updateState={this.updateState}/>
       </div>
     );
   }

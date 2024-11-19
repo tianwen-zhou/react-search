@@ -17,11 +17,11 @@ export default class Search extends Component {
       return;
     }
 
-    this.props.updateState({isFirst: false, isLoad: true})
+    this.props.updateState({isFirst: false, isLoading: true})
 
         // Octokit.js
     // https://github.com/octokit/core.js#readme
-    const GITHUB_TOKEN = ''
+    const GITHUB_TOKEN = 'your_token'
 
     // console.log({keyWord})
     fetch(`https://api.github.com/search/users?q=${keyWord.current.value}&page=1&per_page=10`, {
@@ -37,11 +37,11 @@ export default class Search extends Component {
         return response.json();
       })
       .then((data) => {
-        // console.log('data:',data.total_count, data.items)
-        this.props.updateState({users: data.items, isLoad: false})
+        this.props.updateState({users: data.items, isLoading: false, isFirst : false,  err: ''})
+        // console.log(data.items)
       })
       .catch((error) => {
-        this.props.updateState({err: error.message, isLoad: false})
+        this.props.updateState({users:[], err: error.message, isLoading: false,  isFirst : false})
       });
   }
   
