@@ -12,7 +12,7 @@ export default class List extends Component {
             : err !== '' ? err.message :
           users.map( (user)=>{
           return (
-            <div className="card">
+            <div className="card" key={user.id}>
               <a href={user.html_url} target="_blank">
                 <img src={user.avatar_url} style={{width: '100px'}}/>
               </a>
